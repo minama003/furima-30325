@@ -4,12 +4,14 @@
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| nickname     | string | null: false |
-| email        | unique: true | unique: true |
-| password     | string | null: false |
-| name         | string | null: false |
-| name_reading | string | null: false |
-| birthday     | string | null: false |
+| nickname           | string | null: false |
+| email              | unique: true | unique: true |
+| encrypted_password | string | null: false |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| first_name_reading | string | null: false |
+| last_name_reading  | string | null: false |
+| birthday           | date | null: false |
 
 ### Association
 - has_many :items
@@ -21,16 +23,15 @@
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| image           | string | null: false |
-| name            | string | null: false |
-| text            | text   | null: false |
-| category        | integer | null: false |
-| condition       | integer | null: false |
-| delivery_charge | integer | null: false |
-| delivery_area   | integer | null: false |
-| delivery_day    | integer | null: false |
-| price           | integer | null: false |
-| user            | references | null: false, foreign_key: true |
+| name               | string | null: false |
+| text               | text   | null: false |
+| category_id        | integer | null: false |
+| condition_id       | integer | null: false |
+| delivery_charge_id | integer | null: false |
+| delivery_area_id   | integer | null: false |
+| delivery_day_id    | integer | null: false |
+| price              | integer | null: false |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
