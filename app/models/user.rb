@@ -11,11 +11,11 @@ class User < ApplicationRecord
     validates :last_name
     validates :first_name_reading
     validates :last_name_reading
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z{6,}/i }
+    validates :password
     validates :email, uniqueness: true, format: { with: /@.+/ }
   end
 
-  with_options format: { with: /\A[ぁ-んァ-ン一-龥々]/, message: 'Input full-width characters.' } do
+  with_options format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/, message: 'Input full-width characters.' } do
     validates :first_name
     validates :last_name
   end
@@ -24,4 +24,6 @@ class User < ApplicationRecord
     validates :first_name_reading
     validates :last_name_reading
   end
+
+  validates :password,format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z{6,}/i, message: "is invalid. Input half-width characters."}
 end
