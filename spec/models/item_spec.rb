@@ -12,61 +12,61 @@ RSpec.describe Item, type: :model do
       end
     end
 
-    context "商品出品ができないとき" do
-      it "商品名が空では出品できない" do
-        @item.name = ""
+    context '商品出品ができないとき' do
+      it '商品名が空では出品できない' do
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      it "画像がなしでは出品できない" do
+      it '画像がなしでは出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
-      it "商品説明が空では出品できない" do
-        @item.text = ""
+      it '商品説明が空では出品できない' do
+        @item.text = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
-      it "商品カテゴリーが空では出品できない" do
-        @item.category_id = ""
+      it '商品カテゴリーが空では出品できない' do
+        @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include('Category is not a number')
       end
-      it "商品状態が空では出品できない" do
-        @item.condition_id = ""
+      it '商品状態が空では出品できない' do
+        @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition is not a number")
+        expect(@item.errors.full_messages).to include('Condition is not a number')
       end
-      it "配達日数が空では出品できない" do
-        @item.delivery_day_id = ""
+      it '配達日数が空では出品できない' do
+        @item.delivery_day_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery day is not a number")
+        expect(@item.errors.full_messages).to include('Delivery day is not a number')
       end
-      it "配送エリアが空では出品できない" do
-        @item.prefecture_id = ""
+      it '配送エリアが空では出品できない' do
+        @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture is not a number")
+        expect(@item.errors.full_messages).to include('Prefecture is not a number')
       end
-      it "配送料金が空では出品できない" do
-        @item.delivery_charge_id = ""
+      it '配送料金が空では出品できない' do
+        @item.delivery_charge_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge is not a number")
+        expect(@item.errors.full_messages).to include('Delivery charge is not a number')
       end
-      it "料金が空では出品できない" do
-        @item.price = ""
+      it '料金が空では出品できない' do
+        @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
-      it "料金が半角数字意外では出品できない" do
-        @item.price = "２３２３"
+      it '料金が半角数字意外では出品できない' do
+        @item.price = '２３２３'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
-      it "料金が¥300~¥9,999,999の間でないと出品できない" do
-        @item.price = "10"
+      it '料金が¥300~¥9,999,999の間でないと出品できない' do
+        @item.price = '10'
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include
       end
     end
   end

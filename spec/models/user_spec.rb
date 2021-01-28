@@ -97,22 +97,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Email is invalid', 'Email is invalid')
       end
       it 'passwordは英語のみでは登録できない' do
-        @user.password = "aaaaaa"
-        @user.password_confirmation = "aaaaaa"
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid. Input half-width characters.")
+        expect(@user.errors.full_messages).to include('Password is invalid. Input half-width characters.')
       end
       it 'passwordは数字のみでは登録できない' do
-        @user.password = "111111"
-        @user.password_confirmation = "111111"
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid. Input half-width characters.")
+        expect(@user.errors.full_messages).to include('Password is invalid. Input half-width characters.')
       end
       it 'passwordは全角では登録できない' do
-        @user.password = "AAA111111"
-        @user.password_confirmation = "AAA111111"
+        @user.password = 'AAA111111'
+        @user.password_confirmation = 'AAA111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include()
+        expect(@user.errors.full_messages).to include
       end
     end
   end
