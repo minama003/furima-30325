@@ -9,15 +9,21 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
   belongs_to :prefecture
 
-  validates :name, presence: true
-  validates :text, presence: true
-  validates :image, presence: true
-  validates :price, presence: true
+  with_options  presence: true do
+    validates :name
+    validates :text
+    validates :image
+    validates :price
+  end
 
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :delivery_day_id, numericality: { other_than: 1 }
-  validates :delivery_charge_id, numericality: { other_than: 1 }
+  with_options  numericality: { other_than: 1 } do
+    validates :category_id
+    validates :condition_id
+    validates :delivery_day_id
+    validates :delivery_charge_id
+  end
+  
+
   validates :prefecture_id, numericality: { other_than: 0 }
 
   validates :price, format: { with: /\A[0-9]+\z/ }

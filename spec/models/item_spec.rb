@@ -74,37 +74,37 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include
       end
       it '料金が¥299円以下では登録できないこと' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
       it '料金が¥10,000,000以上では登録できないこと' do
-        @item.price = '10,000,000'
+        @item.price = 10,000,000
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
-      it 'カテゴリーが0以外でないと登録できないこと ' do
-        @item.category_id = '0'
+      it 'カテゴリーが1以外でないと登録できないこと ' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
-      it '状態が0以外でないと登録できないこと ' do
-        @item.condition_id = '0'
+      it '状態が1以外でないと登録できないこと ' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
-      it '配送料が0以外でないと登録できないこと ' do
-        @item.delivery_charge_id = '0'
+      it '配送料が1以外でないと登録できないこと ' do
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
-      it '配送日が0以外でないと登録できないこと ' do
-        @item.delivery_day_id = '0'
+      it '配送日が1以外でないと登録できないこと ' do
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
       it '配送エリアが0以外でないと登録できないこと ' do
-        @item.prefecture_id = '0'
+        @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
