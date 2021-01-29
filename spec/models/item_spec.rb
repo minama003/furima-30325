@@ -63,6 +63,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
+      it '料金が半角英数混合では登録できないこと' do
+        @item.price = 'a1111'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it '料金が半角英語だけでは登録できないこと' do
+        @item.price = 'aaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
       it '料金が¥299円以下では登録できないこと' do
         @item.price = '10'
         @item.valid?
