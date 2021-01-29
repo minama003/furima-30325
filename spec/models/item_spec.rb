@@ -63,8 +63,38 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
-      it '料金が¥300~¥9,999,999の間でないと出品できない' do
+      it '料金が¥299円以下では登録できないこと' do
         @item.price = '10'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it '料金が¥10,000,000以上では登録できないこと' do
+        @item.price = '20,000,000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it 'カテゴリーが0以外でないと登録できないこと ' do
+        @item.category_id = '0'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it '状態が0以外でないと登録できないこと ' do
+        @item.condition_id = '0'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it '配送料が0以外でないと登録できないこと ' do
+        @item.delivery_charge_id = '0'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it '配送日が0以外でないと登録できないこと ' do
+        @item.delivery_day_id = '0'
+        @item.valid?
+        expect(@item.errors.full_messages).to include
+      end
+      it '配送エリアが0以外でないと登録できないこと ' do
+        @item.prefecture_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include
       end
