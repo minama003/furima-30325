@@ -16,16 +16,15 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options  numericality: { other_than: 1 } do
+  with_options  numericality: { other_than: 0 } do
     validates :category_id
     validates :condition_id
     validates :delivery_day_id
     validates :delivery_charge_id
+    validates :prefecture_id
   end
+
+  validates :price, format: { with: /\A[0-9]+\z/}
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to:9999999 }
   
-
-  validates :prefecture_id, numericality: { other_than: 0 }
-
-  validates :price, format: { with: /\A[0-9]+\z/ }
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end

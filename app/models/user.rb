@@ -17,16 +17,15 @@ class User < ApplicationRecord
     validates :email, uniqueness: true, format: { with: /@.+/ }
   end
 
-  with_options format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/, message: 'Input full-width characters.' } do
+  with_options format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ } do
     validates :first_name
     validates :last_name
   end
 
-  with_options format: { with: /\A[ァ-ヶー－]+\z/, message: 'Input full-width katakana characters.' } do
+  with_options format: { with: /\A[ァ-ヶー－]+\z/} do
     validates :first_name_reading
     validates :last_name_reading
   end
 
-  validates :password,
-            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z{6,}/i, message: 'is invalid. Input half-width characters.' }
+  validates :password,format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z{6,}/i }
 end
