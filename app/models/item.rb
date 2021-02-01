@@ -18,11 +18,11 @@ class Item < ApplicationRecord
   end
 
   with_options  numericality: { other_than: 0 } do
-    validates :category
-    validates :condition
-    validates :delivery_day
-    validates :delivery_charge
-    validates :prefecture
+    validates :category_id
+    validates :condition_id
+    validates :delivery_day_id
+    validates :delivery_charge_id
+    validates :prefecture_id
   end
 
   validates :price, format: { with: /\A[0-9]+\z/}
