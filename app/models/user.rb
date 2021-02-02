@@ -22,10 +22,10 @@ class User < ApplicationRecord
     validates :last_name
   end
 
-  with_options format: { with: /\A[ァ-ヶー－]+\z/} do
+  with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
     validates :first_name_reading
     validates :last_name_reading
   end
 
-  validates :password,format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z{6,}/i }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z{6,}/i }
 end

@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     name          { 'ひらがな' }
     text          { 'ひらがな' }
-    price         { 10000 }
+    price         { 10_000 }
     category_id { 2 }
     condition_id { 2 }
     delivery_charge_id { 2 }
