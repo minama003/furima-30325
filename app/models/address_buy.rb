@@ -3,17 +3,12 @@ class AddressBuy
   attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :city, :house_number, :building_name , :phone_number
 
   with_options presence: true do
-    validates :post_code
-    validates :city
+    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/ }
+    validates :city,format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
+    validates :phone_number, format: {with: /\A[0-9]{11}\z/ }
+    validates :prefecture_id, numericality: { other_than: 0 }
     validates :house_number
-    validates :building_name
-    validates :phone_number
   end
-
-  validates :prefecture_id, numericality: { other_than: 0 }
-  validates :phone_number, format: {with: /\A\d{11}\z/ }
-  validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/ }
-  validates :city,format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
 
   def save
     buy = Buy.create(item_id: item_id, user_id: user_id)
