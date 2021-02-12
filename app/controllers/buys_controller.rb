@@ -1,20 +1,30 @@
 class BuysController < ApplicationController
   def index
-    @shipping_addesses_buy = ShippingAddressBuy.new
+    @address_buy = AddressBuy.new
     @item = Item.find(params[:item_id])
   end
 
   def create
-    @shipping_addesses_buy = ShippingAddressBuy.new(buy_params) 
-     if @shipping_addesses_buy.valid?
-       @shipping_addesses_buy.save
-       redirect_to action: :index
+    @item = Item.find(params[:item_id])
+    @address_buy = AddressBuy.new(buy_params)
+     if @address_buy.valid?
+       @address_buy.save
+       redirect_to root_path
      else
-       render action: :new
+      render :index
      end
   end
 
+  private
+
   def buy_params
-    params.require(:shipping_addesses_buy).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number)
-   end
+    params.require(:address_buy).permit(
+      :post_code, 
+      :prefecture_id, 
+      :city, 
+      :house_number, 
+      :building_name, 
+      :phone_number
+    ).merge(user_id: current_user.id,item_id: params[:item_id])
+  end
 end
