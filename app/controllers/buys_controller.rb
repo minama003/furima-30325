@@ -1,11 +1,13 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_index, only: :index
-
+  before_action :move_to_index, only: [:index]
 
   def index
     @address_buy = AddressBuy.new
     @item = Item.find(params[:item_id])
+    if current_user == @item.user
+      redirect_to root_path
+    end
   end
 
   def create
@@ -43,6 +45,9 @@ class BuysController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path
+    if user_signed_in?
+      redirect_to root_path
+    end
   end
+
 end
