@@ -1,4 +1,8 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!
+  before_action :move_to_index, only: :index
+
+
   def index
     @address_buy = AddressBuy.new
     @item = Item.find(params[:item_id])
@@ -36,5 +40,9 @@ class BuysController < ApplicationController
       card: buy_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    redirect_to root_path
   end
 end
