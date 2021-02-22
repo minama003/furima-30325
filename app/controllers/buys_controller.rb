@@ -1,12 +1,13 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_index, only: [:index]
 
   def index
     @address_buy = AddressBuy.new
     @item = Item.find(params[:item_id])
-    if current_user == @item.user
-      redirect_to root_path
+    @buy = @item.buy
+    if current_user != @item.user || @item.buy.nil?
+    else
+      redirect_to root_path 
     end
   end
 
@@ -21,6 +22,7 @@ class BuysController < ApplicationController
       render :index
     end
   end
+
 
   private
 
@@ -43,11 +45,4 @@ class BuysController < ApplicationController
       currency: 'jpy'
     )
   end
-
-  def move_to_index
-    if user_signed_in?
-      redirect_to root_path
-    end
-  end
-
 end
