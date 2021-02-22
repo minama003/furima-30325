@@ -7,7 +7,7 @@ class BuysController < ApplicationController
     @buy = @item.buy
     if current_user != @item.user || @item.buy.nil?
     else
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 
@@ -22,7 +22,6 @@ class BuysController < ApplicationController
       render :index
     end
   end
-
 
   private
 
