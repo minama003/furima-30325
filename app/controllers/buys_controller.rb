@@ -2,7 +2,6 @@ class BuysController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
 
-
   def index
     @address_buy = AddressBuy.new
     @buy = @item.buy
@@ -46,7 +45,6 @@ class BuysController < ApplicationController
   end
 
   def set_item
-     @item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
-
 end
