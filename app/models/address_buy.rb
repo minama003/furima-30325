@@ -8,11 +8,11 @@ class AddressBuy
     validates :prefecture_id, numericality: { other_than: 0 }
     validates :house_number
     validates :city
+    validates :token
     validates :user_id
     validates :item_id
   end
 
-  validates :token, presence: true
 
   def save
     buy = Buy.create(item_id: item_id, user_id: user_id)

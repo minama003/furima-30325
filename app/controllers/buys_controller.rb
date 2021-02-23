@@ -1,14 +1,11 @@
 class BuysController < ApplicationController
-  before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create]
+
 
   def index
     @address_buy = AddressBuy.new
     @buy = @item.buy
-    if current_user != @item.user || @item.buy.nil?
-    else
-      redirect_to root_path
-    end
   end
 
   def create
@@ -46,5 +43,9 @@ class BuysController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+    if current_user != @item.user || @item.buy.nil?
+    else
+      redirect_to root_path
+    end
   end
 end
