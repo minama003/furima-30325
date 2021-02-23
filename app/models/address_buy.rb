@@ -4,10 +4,12 @@ class AddressBuy
 
   with_options presence: true do
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
-    validates :city, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
     validates :phone_number, format: { with: /\A[0-9]{11}\z/ }
     validates :prefecture_id, numericality: { other_than: 0 }
     validates :house_number
+    validates :city
+    validates :user_id
+    validates :item_id
   end
 
   validates :token, presence: true

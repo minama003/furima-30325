@@ -60,6 +60,16 @@ RSpec.describe AddressBuy, type: :model do
       @address_buy.valid?
       expect(@address_buy.errors.full_messages).to include("Token can't be blank")
     end
+    it 'user_idがなければ保存できない' do
+      @address_buy.user_id = nil
+      @address_buy.valid?
+      expect(@address_buy.errors.full_messages).to include("User id can't be blank")
+    end
+    it 'item_idがなければ保存できない' do
+      @address_buy.item_id = nil
+      @address_buy.valid?
+      expect(@address_buy.errors.full_messages).to include("Item id can't be blank")
+    end
 
     it 'building_nameは空でも保存できること' do
       @address_buy.building_name = ''

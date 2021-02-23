@@ -1,9 +1,10 @@
 class BuysController < ApplicationController
+  before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
+
 
   def index
     @address_buy = AddressBuy.new
-    @item = Item.find(params[:item_id])
     @buy = @item.buy
     if current_user != @item.user || @item.buy.nil?
     else
@@ -12,7 +13,6 @@ class BuysController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @address_buy = AddressBuy.new(buy_params)
     if @address_buy.valid?
       pay_item
@@ -44,4 +44,9 @@ class BuysController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_item
+     @item = Item.find(params[:item_id])
+  end
+
 end
