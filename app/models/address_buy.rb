@@ -13,7 +13,6 @@ class AddressBuy
     validates :item_id
   end
 
-
   def save
     buy = Buy.create(item_id: item_id, user_id: user_id)
     ShippingAddress.create(post_code: post_code, prefecture_id: prefecture_id, city: city, house_number: house_number,
