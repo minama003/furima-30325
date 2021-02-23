@@ -42,9 +42,6 @@ class BuysController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
-    if current_user != @item.user || @item.buy.nil?
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user == @item.user || @item.buy.present?
   end
 end
