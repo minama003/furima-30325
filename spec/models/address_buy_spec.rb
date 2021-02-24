@@ -3,11 +3,18 @@ require 'rails_helper'
 RSpec.describe AddressBuy, type: :model do
   describe '購入情報の保存' do
     before do
-      @address_buy = FactoryBot.build(:address_buy)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @address_buy = FactoryBot.build(:address_buy,user_id: user_id , item_id: item_id ))
     end
 
     context '商品購入がうまくいくとき' do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@address_buy).to be_valid
+      end
+      it 'building_nameは空でも保存できること' do
+        @address_buy.building_name = ''
+        @address_buy.valid?
         expect(@address_buy).to be_valid
       end
     end
@@ -72,12 +79,6 @@ RSpec.describe AddressBuy, type: :model do
         @address_buy.item_id = nil
         @address_buy.valid?
         expect(@address_buy.errors.full_messages).to include("Item id can't be blank")
-      end
-
-      it 'building_nameは空でも保存できること' do
-        @address_buy.building_name = ''
-        @address_buy.valid?
-        expect(@address_buy).to be_valid
       end
     end
   end
