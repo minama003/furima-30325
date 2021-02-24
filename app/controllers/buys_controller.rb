@@ -4,7 +4,6 @@ class BuysController < ApplicationController
 
   def index
     @address_buy = AddressBuy.new
-    @buy = @item.buy
   end
 
   def create

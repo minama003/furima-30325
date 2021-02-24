@@ -30,7 +30,7 @@ RSpec.describe AddressBuy, type: :model do
         @address_buy.valid?
         expect(@address_buy.errors.full_messages).to include('Post code is invalid')
       end
-      it '都道府県がからだと保存できないこと' do
+      it '都道府県が空だと保存できないこと' do
         @address_buy.prefecture_id = ''
         @address_buy.valid?
         expect(@address_buy.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture is not a number')
