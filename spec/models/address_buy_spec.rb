@@ -4,8 +4,11 @@ RSpec.describe AddressBuy, type: :model do
   describe '購入情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      item = FactoryBot.create(:item)
-      @address_buy = FactoryBot.build(:address_buy,user_id: user_id , item_id: item_id ))
+      item = FactoryBot.build(:item)
+      item.user.email = "aaaa@docomo.ne.cp"
+      item.save
+      @address_buy = FactoryBot.build(:address_buy,user_id: user.id , item_id: item.id )
+      sleep 1
     end
 
     context '商品購入がうまくいくとき' do
@@ -53,7 +56,7 @@ RSpec.describe AddressBuy, type: :model do
       it 'phone_numberが空だと保存できないこと' do
         @address_buy.phone_number = ''
         @address_buy.valid?
-        expect(@address_buy.errors.full_messages).to include('Phone number is invalid')
+        expect(@address_buy.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberが半角のハイフンを含んでいない正しい形式でないとと保存できないこと' do
         @address_buy.phone_number = '090-1234-5678'
@@ -65,6 +68,11 @@ RSpec.describe AddressBuy, type: :model do
         @address_buy.valid?
         expect(@address_buy.errors.full_messages).to include('Phone number is invalid')
       end
+      it 'phone_numberが英数混合では登録できないこと' do
+        @address_buy.phone_number = 'o9012345678'
+        @address_buy.valid?
+        expect(@address_buy.errors.full_messages).to include('Phone number is invalid')
+      end
       it 'tokenが空では登録できないこと' do
         @address_buy.token = nil
         @address_buy.valid?
@@ -73,12 +81,12 @@ RSpec.describe AddressBuy, type: :model do
       it 'user_idがなければ保存できない' do
         @address_buy.user_id = nil
         @address_buy.valid?
-        expect(@address_buy.errors.full_messages).to include("User id can't be blank")
+        expect(@address_buy.errors.full_messages).to include("User can't be blank")
       end
       it 'item_idがなければ保存できない' do
         @address_buy.item_id = nil
         @address_buy.valid?
-        expect(@address_buy.errors.full_messages).to include("Item id can't be blank")
+        expect(@address_buy.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
